@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💕</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffd6e8, #ffe9f1);
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    img {
+      width: 220px;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      color: #ff4d88;
+      margin-bottom: 25px;
+      font-size: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 20px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: bounce 1.8s infinite;
+    }
+
+    #yesBtn {
+      background: #ff5fa2;
+      color: white;
+      box-shadow: 0 8px 20px rgba(255, 95, 162, 0.4);
+    }
+
+    #noBtn {
+      background: #bbb;
+      color: white;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff7eb3;
+      font-size: 20px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+<div class="tenor-gif-embed" data-postid="3353680604901966171" data-share-method="host" data-aspect-ratio="1.46471" data-width="100%"><a href="https://tenor.com/view/minions-cartoon-i-love-you-heart-cute-gif-3353680604901966171">Minions Cartoon GIF</a>from <a href="https://tenor.com/search/minions-gifs">Minions GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    <h1 id="question">Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 😭</button>
+    </div>
+  </div>
+
+  <script>
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const question = document.getElementById("question");
+
+  const noTexts = [
+    "Will you be my Valentine? 💖",
+    "Are you sure? 🥺",
+    "Really really sure? 😢",
+    "I'll be sad... 💔",
+    "Pleaseee 🥹",
+    "My heart 😭💔"
+  ];
+
+  let noClickCount = 0;
+  let yesScale = 1;
+
+  noBtn.addEventListener("click", () => {
+    noClickCount++;
+
+    // Change ONLY the question text
+    question.innerText =
+      noTexts[Math.min(noClickCount, noTexts.length - 1)];
+
+    // Enlarge YES button
+    yesScale += 0.3;
+    yesBtn.style.transform = `scale(${yesScale})`;
+  });
+
+  yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        background:linear-gradient(135deg, #ffd6e8, #ffe9f1);
+        font-family:'Comic Sans MS', cursive;
+      ">
+        <h1 style="font-size:48px;color:#ff4d88;">YAYYY!! 💖💖💖</h1>
+        <p style="font-size:26px;">I knew you'd say yes 😘</p>
+        <p style="font-size:22px;">Happy Valentine's Day 💝</p>
+      </div>
+    `;
+  });
+
+  // Floating hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 300);
+</script>
+
+</body>
+</html>
